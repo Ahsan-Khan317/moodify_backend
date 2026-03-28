@@ -13,7 +13,7 @@ const app = express()
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 app.use(cors({
-    origin:"https://moodifymusics.netlify.app",
+    origin:"http://localhost:5173",
     credentials:true,
     methods:["POST","PATCH","DELETE","GET"]
 }))
