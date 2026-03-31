@@ -1,10 +1,13 @@
 
 import redis from "../../config/redis.connect.js";
-const logout = async(req,res)=>{
+import apiError from "../../utils/apiError.js";
+import asyncHandler from "../../utils/asyncHandler.js";
+const logout = asyncHandler(
+     async(req,res)=>{
 
- try{
+
        const token = req.cookies.token;
-if(!token) return res.sttus(400).json({message:"token not found",success:false})
+if(!token) throw new apiError(400,"token not found")
 
     await redis.set(token,new Date().toLocaleDateString())
 
@@ -16,14 +19,9 @@ if(!token) return res.sttus(400).json({message:"token not found",success:false})
         succcess:true
     })
 
- }
-catch(err){
-    res.status(401).json({
-        message:"logging out declined",
-        success:false
-    })
-}
+ 
     
 }
 
+)
 export default logout

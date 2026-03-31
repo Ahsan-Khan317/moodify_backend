@@ -1,8 +1,10 @@
 import id3 from "node-id3";
 import uploadToImageKit from "../../services/generateURL.services.js";
 import songmodel from "../../models/song.model.js";
-const upload_song = async (req, res) => {
-try{
+import asyncHandler from "../../utils/asyncHandler.js";
+const upload_song = asyncHandler(
+  async (req, res) => {
+
     const {mood} = req.body
   const buffer = req.file?.buffer;
 
@@ -46,14 +48,8 @@ res.status(201).json({
   success:true
 })
 
-}
-catch(err){
-  res.status(401).json({
-  message:err.message,
+
   
-  success:false
-})
-}
-  
-};
+  }
+)
 export default upload_song;

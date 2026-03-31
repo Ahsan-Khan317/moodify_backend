@@ -3,6 +3,7 @@ dotenv.config()
 import express from "express"
 import cors from "cors"
 import cookieParser from "cookie-parser"
+import error_middleware from "./middleware/error.middleware.js"
 import songrouter from "./routes/song.routes.js"
 import authRouter from "./routes/auth.routes.js"
 
@@ -22,5 +23,5 @@ app.use(cookieParser())
 app.use("/moodify",authRouter)
 app.use("/moodify",songrouter)
 
-
+app.use(error_middleware)
 export default app

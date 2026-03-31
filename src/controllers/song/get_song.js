@@ -1,8 +1,9 @@
 import songmodel from "../../models/song.model.js";
+import asyncHandler from "../../utils/asyncHandler.js";
+const get_allsong = asyncHandler(
+async(req,res)=>{
 
-const get_allsong = async(req,res)=>{
-
-   try{
+   
      const result = await songmodel.find()
 
 
@@ -11,15 +12,9 @@ const get_allsong = async(req,res)=>{
         result,
         success:true
     })
-   }
-   catch(err){
 
-    res.status(400).json({
-        message:err.message,
-        success:false
-    })
-
-   }
 }
 
+
+)
 export default get_allsong
